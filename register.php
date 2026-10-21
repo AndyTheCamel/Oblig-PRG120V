@@ -24,5 +24,8 @@
 	else 
 		{
 			include("db.tilkobling.php");
-		$sqlsetning="SELECT * FROM Klasse WHERE Klassekode="$Klassekode";";
+		$sqlsetning="SELECT * FROM Klasse WHERE Klassekode='$Klassekode';";
+		$resultat=mysqli_query($db,$sqlsetning);
+		}
+?>
 		 	
