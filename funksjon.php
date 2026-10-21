@@ -6,7 +6,8 @@ $password=getenv("DB_PASSWORD");
 $database=getenv ("DB_DATABASE");
 
 
-$db=mysqli_connect($host,$username,$password,$database) or die ("ikke kontakt med serveren")
+$db=mysqli_connect($host,$username,$password,$database) or die ("ikke kontakt med serveren");
+return $db;
 }
 
 function getKlassekode(){
