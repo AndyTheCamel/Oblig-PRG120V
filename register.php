@@ -17,15 +17,17 @@
 		$Klassekode=$_POST["Klassekode"];
 		$Klassenavn=$_POST["Klassenavn"];
 		$Studiumkode=$_POST["Studiumkode"];
+	  }
 	if (!$Klassekode || !$Klassenavn || !$Studiumkode)
 		{
 			print("B&aring;de postnr og poststed m&aring; fylles ut");
 		}
 	else 
 		{
-			include("db.tilkobling.php");
 		$sqlsetning="SELECT * FROM Klasse WHERE Klassekode='$Klassekode';";
-		$resultat=mysqli_query($db,$sqlsetning);
+		$resultat=mysqli_query($db,$sqlsetning) or die ("ikke mulig &aring; hente data fra databasen");
+		
+		print("Følgende data er registrert: $Klassekode, $Klassenavn, $Studiumkode");
 		}
 ?>
 		 	
