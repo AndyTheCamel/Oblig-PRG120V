@@ -1,7 +1,7 @@
 <?php
 include("db.tilkobling.php");
 
-$sqlSetning = "SELECT * FROM klasse";
+$sqlSetning = "SELECT * FROM Klasse";
 
 $sql_resultat = mysqli_query($db, $sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
 
