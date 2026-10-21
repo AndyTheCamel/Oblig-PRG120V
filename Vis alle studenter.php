@@ -1,5 +1,5 @@
 <?php
-include("db.tillkobling.php");
+include("db.tilkobling.php");
 
 $sqlSetning = "SELECT * FROM student2";
 
