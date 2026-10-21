@@ -45,7 +45,7 @@
                         $sqlSetning="INSERT INTO student2 VALUES('$Brukernavn','$Fornavn','$Etternavn','$Klassekode');";
                         mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
                     }
-                print("Følgende data er registrert: $Brukernavn, $Fornavn, $Etternavn, $Klassekode");
+                print("Følgende data er registrert: Brukernavn: $Brukernavn, Fornavn: $Fornavn, Etternavn: $Etternavn, Klassekode: $Klassekode");
             }
       }
 ?>
