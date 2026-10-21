@@ -12,31 +12,32 @@
 </html>
 
 <?php
-	if (isset($_POST ["RegistrerStudent"]))
+	if (isset($_POST["Registrer"]))
 	  {
-		$Klassekode=$_POST["Klassekode"];
-		$Klassenavn=$_POST["Klassenavn"];
-		$Studiumkode=$_POST["Studiumkode"];
+		$Klassekode = isset($_POST["Klassekode"]) ? $_POST["Klassekode"] : "";
+		$Klassenavn = isset($_POST["Klassenavn"]) ? $_POST["Klassenavn"] : "";
+		$Studiumkode = isset($_POST["Studiumkode"]) ? $_POST["Studiumkode"] : "";
+
+		if (!$Klassekode || !$Klassenavn || !$Studiumkode)
+			{
+				print("B&aring;de klassekode, klassenavn og studiumkode m&aring; fylles ut");
+			}
+		else
+			{
+				$sqlSetning="SELECT * FROM Klasse WHERE Klassekode='$Klassekode';";
+				$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
+				$antallRader=mysqli_num_rows($sqlResultat);
+				if ($antallRader !=0)
+					{
+						print("Klassen er allerede registrert i databasen");
+					}
+				else
+					{
+						$sqlSetning="INSERT INTO Klasse VALUES('$Klassekode','$Klassenavn','$Studiumkode');";
+						mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
+					}
+				print("Følgende data er registrert: $Klassekode, $Klassenavn, $Studiumkode");
+			}
 	  }
-	if (!$Klassekode || !$Klassenavn || !$Studiumkode)
-		{
-			print("B&aring;de klassekode, klassenavn og studiumkode m&aring; fylles ut");
-		}
-	else 
-		{
-		$sqlSetning="SELECT * FROM Klasse WHERE Klassekode='$Klassekode';";
-		$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
-		$antallRader=mysqli_num_rows($sqlResultat);
-	if ($antallRader !=0)
-		{
-			print("Klassen er allerede registrert i databasen");
-		}
-	else
-		{
-			$sqlSetning="INSERT INTO Klasse VALUES('$Klassekode','$Klassenavn','$Studiumkode');";
-			mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
-		}	
-		print("Følgende data er registrert: $Klassekode, $Klassenavn, $Studiumkode");
-		}
 ?>
 		 	
