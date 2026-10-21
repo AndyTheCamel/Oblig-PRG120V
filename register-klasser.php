@@ -24,9 +24,18 @@
 		}
 	else 
 		{
-		$sqlsetning="SELECT * FROM Klasse WHERE Klassekode='$Klassekode';";
-		$resultat=mysqli_query($db,$sqlsetning) or die ("ikke mulig &aring; hente data fra databasen");
-		
+		$sqlSetning="SELECT * FROM Klasse WHERE Klassekode='$Klassekode';";
+		$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; hente data fra databasen");
+		$antallRader=mysqli_num_rows($sqlResultat);
+	if ($antallRader !=0)
+		{
+			print("Klassen er allerede registrert i databasen");
+		}
+	else
+		{
+			$sqlSetning="INSERT INTO Klasse VALUES('$Klassekode','$Klassenavn','$Studiumkode');";
+			mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registrere data i databasen");
+		}	
 		print("Følgende data er registrert: $Klassekode, $Klassenavn, $Studiumkode");
 		}
 ?>
