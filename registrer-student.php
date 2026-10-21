@@ -13,6 +13,7 @@
                 foreach ($klassekoder as $klassekode) {
                     echo "<option value=\"$klassekode\">$klassekode</option>";
                 }
+            ?>
    	 <input type="submit" value="Registrer" id="Registrer" name="Registrer"/>
      <input type="reset" value="Nullstill" id="Nullstill" name="Nullstill" /> <br /> </form>
 </html>     
