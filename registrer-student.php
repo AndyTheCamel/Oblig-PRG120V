@@ -4,8 +4,8 @@ include("db.tilkobling.php");
 <!DOCTYPE html>
 <html>  
     <form method="post" action="" id="RegistrerStudent" name="RegistrerStudent">
- 	 Brukernavn <input type="text" id="Brukernavn" name="Brukernavn" required />
-  	 Fornavn <input type="text" id="Fornavn" name="Fornavn" required /> <br/>
+ 	 Brukernavn <input type="text" id="Brukernavn" name="Brukernavn" required /> <br/>
+  	 Fornavn <input type="text" id="Fornavn" name="Fornavn" required /> 
    	 Etternavn <input type="text" id="Etternavn" name="Etternavn" required /> <br/>
      Klassekode   <select name="Klassekode" id="Klassekode" required> <br/>
             <option value="">Velg klassekode</option>
