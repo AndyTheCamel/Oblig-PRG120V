@@ -10,14 +10,16 @@ $antallRader = mysqli_num_rows($sql_resultat);
 
 print ("<h3>Registrerte studenter</h3>");
 print ("<table border=1>");  
-print ("<tr><th align=left>studnr</th> <th align=left>navn</th></tr>"); 
+print ("<tr><th align=left>Brukernavn</th> <th align=left>Fornavn</th> <th align=left>Etternavn</th> <th align=left>Klassekode</th></tr>"); 
 
 for ($r=1;$r<=$antallRader;$r++)
 {
     $rad = mysqli_fetch_array($sql_resultat);
-    $studnr = $rad["studnr"];
-    $navn = $rad["navn"];
-    print ("<tr><td>$studnr</td> <td>$navn</td></tr>");
+    $Brukernavn = $rad["Brukernavn"];
+    $Fornavn = $rad["Fornavn"];
+    $Etternavn = $rad["Etternavn"];
+    $Klassekode = $rad["Klassekode"];
+    print ("<tr><td>$Brukernavn</td> <td>$Fornavn</td> <td>$Etternavn</td> <td>$Klassekode</td></tr>");
 }
 print ("</table>");
 ?>
