@@ -6,13 +6,13 @@ include("db.tilkobling.php");
 <html>  
     <form method="post" action="" id="SlettStudent" name="SlettStudent">
  	 Brukernavn <select id="Brukernavn" name="Brukernavn" required>
-            <option value="">Velg brukernavn</option>
+            <option value="">Velg Brukernavn</option>
             <?php
-            $sql = "SELECT brukernavn FROM student2";
+            $sql = "SELECT Brukernavn FROM student2";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row["brukernavn"] . "'>" . $row["brukernavn"] . "</option>";
+                    echo "<option value='" . $row["Brukernavn"] . "'>" . $row["Brukernavn"] . "</option>";
                 }
             }
             ?>
