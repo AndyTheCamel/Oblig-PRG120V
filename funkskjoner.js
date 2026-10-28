@@ -1,4 +1,4 @@
 function bekreft() 
 {
-    return confirm("Er du sikker på?");
+    return confirm("Er du sikker?");
 }

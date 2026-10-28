@@ -1,7 +1,7 @@
 <?php
 include("db.tilkobling.php");
 ?>
-<script src=funksjon.js></script>
+<script src="funksjoner.js"></script>
 <!DOCTYPE html>
 <html>  
     <form method="post" action="" id="SlettStudent" name="SlettStudent">
