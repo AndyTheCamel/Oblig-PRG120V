@@ -9,11 +9,13 @@ include("db.tilkobling.php");
             <option value="">Velg Brukernavn</option>
             <?php
             $sql = "SELECT Brukernavn FROM student2";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row["Brukernavn"] . "'>" . $row["Brukernavn"] . "</option>";
-                }
+            $result = mysqli_query($db, $sql);
+            if (!$result) {
+                die("Feil ved henting av brukernavn: " . mysqli_error($db));
+            }
+            while ($row = mysqli_fetch_assoc($result)) {
+                $brukernavn = htmlspecialchars($row["Brukernavn"], ENT_QUOTES, "UTF-8");
+                echo "<option value=\"$brukernavn\">$brukernavn</option>";
             }
             ?>
         </select> <br/>
