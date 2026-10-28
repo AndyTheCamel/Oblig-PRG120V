@@ -25,21 +25,26 @@ include("db.tilkobling.php");
 <?php
 if (isset($_POST["Slett"])) 
     {
-    $Brukernavn= $_POST["Brukernavn"];
-    $sqlSetning="DELETE FROM student2 WHERE Brukernavn='$Brukernavn';";
-    $sqlresultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data fra databasen");
-    $antallRader=mysqli_num_rows($sqlresultat);
-
-    if ($antallRader !=0)
-        {
-            print("Studenten finnes ikke i databasen");
+    $Brukernavn = $_POST["Brukernavn"] ?? "";
+    if ($Brukernavn === "") {
+        print("Vennligst velg et brukernavn å slette.");
+    } else {
+        $statement = mysqli_prepare($db, "DELETE FROM student2 WHERE Brukernavn = ?");
+        if (!$statement) {
+            die("Feil ved klargjøring av sletting: " . mysqli_error($db));
         }
-    else
-        {
-           $sqlSetning="DELETE FROM student2 WHERE Brukernavn='$Brukernavn';";
-            mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data fra databasen");
-
-            print("Følgende student er slettet: Brukernavn: $Brukernavn, Fornavn: $Fornavn, Etternavn: $Etternavn, Klassekode: $Klassekode");
+        mysqli_stmt_bind_param($statement, "s", $Brukernavn);
+        if (!mysqli_stmt_execute($statement)) {
+            die("Feil ved sletting av studenten: " . mysqli_stmt_error($statement));
         }
+
+        if (mysqli_stmt_affected_rows($statement) > 0) {
+            $escapedBrukernavn = htmlspecialchars($Brukernavn, ENT_QUOTES, "UTF-8");
+            print("Studenten med brukernavn '$escapedBrukernavn' er slettet fra databasen.");
+        } else {
+            print("Studenten finnes ikke i databasen.");
+        }
+        mysqli_stmt_close($statement);
+    }
     }
 ?>
