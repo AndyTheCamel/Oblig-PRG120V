@@ -23,18 +23,23 @@ include("db.tilkobling.php");
       	 <input type="reset" value="Nullstill" id="Nullstill" name="Nullstill" /> <br /> </form>
 </html>
 <?php
-if (isset($_POST["Slett"])) {
-    $Brukernavn = isset($_POST["Brukernavn"]) ? $_POST["Brukernavn"] : "";
+if (isset($_POST["Slett"])) 
+    {
+    $Brukernavn= $_POST["Brukernavn"];
+    $sqlSetning="DELETE FROM student2 WHERE Brukernavn='$Brukernavn';";
+    $sqlresultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data fra databasen");
+    $antallRader=mysqli_num_rows($sqlresultat);
 
-    if (!$Brukernavn) {
-        print("Vennligst velg et brukernavn å slette.");
-    } else {
-        $sqlSetning = "DELETE FROM student2 WHERE Brukernavn='$Brukernavn';";
-        if (mysqli_query($db, $sqlSetning)) {
-            print("Studenten med brukernavn '$Brukernavn' er slettet fra databasen.");
-        } else {
-            print("Feil ved sletting av studenten: " . mysqli_error($db));
+    if ($antallRader !=0)
+        {
+            print("Studenten finnes ikke i databasen");
+        }
+    else
+        {
+           $sqlSetning="DELETE FROM student2 WHERE Brukernavn='$Brukernavn';";
+            mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data fra databasen");
+
+            print("Følgende student er slettet: Brukernavn: $Brukernavn, Fornavn: $Fornavn, Etternavn: $Etternavn, Klassekode: $Klassekode");
         }
     }
-}
 ?>
