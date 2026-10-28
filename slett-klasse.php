@@ -1,5 +1,5 @@
 <?php
-include(db.tilkobling.php);
+include("db.tilkobling.php");
 ?>
 <script src="functions.js"></script>
 <html>
@@ -7,14 +7,14 @@ include(db.tilkobling.php);
         <select id="SlettKlasse" name="SlettKlasse" required>
             <option value="">Velg klasse</option>
             <?php
-            $sql = "SELECT Klasse FROM klasse";
+            $sql = "SELECT Klassekode FROM Klasse";
             $result = mysqli_query($db, $sql);
             if (!$result) {
                 die("Feil ved henting av klasser: " . mysqli_error($db));
             }
             while ($row = mysqli_fetch_assoc($result)) {
-                $klasse = htmlspecialchars($row["Klasse"], ENT_QUOTES, "UTF-8");
-                echo "<option value=\"$klasse\">$klasse</option>";
+                $klassekode = htmlspecialchars($row["Klassekode"], ENT_QUOTES, "UTF-8");
+                echo "<option value=\"$klassekode\">$klassekode</option>";
             }
             ?>
         </select>
@@ -24,21 +24,26 @@ include(db.tilkobling.php);
 <?php
 if (isset($_POST['slett'])) 
     {
-        $klasse = $_POST['SlettKlasse'] ?? "";
-
-        $sqlsetning = "DELETE FROM klasse WHERE Klasse = ?";
-        $sqlResultat = mysqlquery($db, $sqlsetning); or die("Feil ved sletting av klasse: " . mysqli_error($db));
-        $antallRader = mysqli_num_rows($sqlResultat);
-
-        if ($antallRader == 0) 
-            {
-            print ("klassen finnes ikke i databasen.");
-            } 
-        else 
-            {
-            $sqlsetning = "DELETE FROM klasse WHERE Klasse = '$klasse'";
-            mysqli_query($db, $sqlsetning) or die("Feil ved sletting av klasse: ");
-            
-            print ("Klassen $klasse er slettet fra databasen.");
+        $klassekode = $_POST['SlettKlasse'] ?? "";
+        if ($klassekode === "") {
+            print("Vennligst velg en klasse å slette.");
+        } else {
+            $statement = mysqli_prepare($db, "DELETE FROM Klasse WHERE Klassekode = ?");
+            if (!$statement) {
+                die("Feil ved klargjøring av sletting: " . mysqli_error($db));
             }
+            mysqli_stmt_bind_param($statement, "s", $klassekode);
+            if (!mysqli_stmt_execute($statement)) {
+                die("Feil ved sletting av klasse: " . mysqli_stmt_error($statement));
+            }
+
+            if (mysqli_stmt_affected_rows($statement) > 0) {
+                $escapedKlassekode = htmlspecialchars($klassekode, ENT_QUOTES, "UTF-8");
+                print("Klassen $escapedKlassekode er slettet fra databasen.");
+            } else {
+                print("Klassen finnes ikke i databasen.");
+            }
+            mysqli_stmt_close($statement);
         }
+    }
+?>
