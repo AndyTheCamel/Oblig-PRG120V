@@ -1,8 +1,8 @@
 <?php
 include("db.tilkobling.php");
 ?>
-<script src="funksjoner.js"></script>
 <!DOCTYPE html>
+<script src="funksjoner.js"></script>
 <html>  
     <form method="post" action="" id="SlettStudent" name="SlettStudent">
  	 Brukernavn <select id="Brukernavn" name="Brukernavn" required>
