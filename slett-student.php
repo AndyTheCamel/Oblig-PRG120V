@@ -2,9 +2,13 @@
 include("db.tilkobling.php");
 ?>
 <!DOCTYPE html>
-<script src="funksjoner.js"></script>
-<html>  
-    <form method="post" action="" id="SlettStudent" name="SlettStudent">
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <script src="./funksjoner.js" defer></script>
+</head>
+<body>
+    <form method="post" action="" id="SlettStudent" name="SlettStudent" onsubmit="return slett();">
  	 Brukernavn <select id="Brukernavn" name="Brukernavn" required>
             <option value="">Velg Brukernavn</option>
             <?php
@@ -19,7 +23,7 @@ include("db.tilkobling.php");
             }
             ?>
         </select> <br/>
-   	 <input type="submit" value="Slett" id="Slett" name="Slett" onsubmit="return slett();"/>
+   	 <input type="submit" value="Slett" id="Slett" name="Slett" />
       	 <input type="reset" value="Nullstill" id="Nullstill" name="Nullstill" /> <br /> </form>
 </html>
 <?php
