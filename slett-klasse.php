@@ -8,7 +8,7 @@ include("db.tilkobling.php");
     <script src="./funksjoner.js" defer></script>
 </head>
 <body>
-    <form method="post" action="" id="SlettKlasseForm" name="SlettKlasse" onsubmit="return slett();">
+    <form method="post" action="" id="SlettKlasse" name="SlettKlasse" onsubmit="return slett();">
         <select id="SlettKlasse" name="SlettKlasse" required>
             <option value="">Velg klasse</option>
             <?php
