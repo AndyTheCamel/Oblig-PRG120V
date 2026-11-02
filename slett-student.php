@@ -19,7 +19,7 @@ include("db.tilkobling.php");
             }
             ?>
         </select> <br/>
-   	 <input type="submit" value="Slett" id="Slett" name="Slett" onclick="return slett();"/>
+   	 <input type="submit" value="Slett" id="Slett" name="Slett" onsubmit="return slett();"/>
       	 <input type="reset" value="Nullstill" id="Nullstill" name="Nullstill" /> <br /> </form>
 </html>
 <?php

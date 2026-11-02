@@ -18,7 +18,7 @@ include("db.tilkobling.php");
             }
             ?>
         </select>
-        <input type="submit" name="slett" value="Slett klasse">
+        <input type="submit" name="slett" value="Slett klasse" onsubmit="return slett();" />
     </form>
 </html>
 <?php
