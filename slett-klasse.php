@@ -3,7 +3,7 @@ include("db.tilkobling.php");
 ?>
 <script src="functions.js"></script>
 <html>
-    <form method="post" action="" id="SlettKlasse" name="SlettKlasse">
+    <form method="post" action="" id="SlettKlasse" name="SlettKlasse" onsubmit="return slett();">
         <select id="SlettKlasse" name="SlettKlasse" required>
             <option value="">Velg klasse</option>
             <?php
