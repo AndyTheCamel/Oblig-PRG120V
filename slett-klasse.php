@@ -1,9 +1,14 @@
 <?php
 include("db.tilkobling.php");
 ?>
-<script src="funksjoner.js"></script>
-<html>
-    <form method="post" action="" id="SlettKlasse" name="SlettKlasse" onsubmit="return slett();">
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <script src="./funksjoner.js" defer></script>
+</head>
+<body>
+    <form method="post" action="" id="SlettKlasseForm" name="SlettKlasse" onsubmit="return slett();">
         <select id="SlettKlasse" name="SlettKlasse" required>
             <option value="">Velg klasse</option>
             <?php
@@ -18,8 +23,9 @@ include("db.tilkobling.php");
             }
             ?>
         </select>
-        <input type="submit" name="slett" value="Slett klasse" onsubmit="return slett();" />
+        <input type="submit" name="slett" value="Slett klasse" />
     </form>
+</body>
 </html>
 <?php
 if (isset($_POST['slett'])) 
